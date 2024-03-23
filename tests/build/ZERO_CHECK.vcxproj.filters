@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\sluec\OneDrive\Documents\Code\Projects\FlightBookingSuggestor_v1\tests\build\CMakeFiles\5c6b199f192404cdebb44eb9460fc8f6\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{2FFCFCB7-A87C-345E-BE56-83167B98B9B9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
