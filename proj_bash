@@ -1,0 +1,15 @@
+#!/bin/bash
+
+#
+#   Project bash script to setup working environment for FlightBookingSuggestor Project
+#
+
+export TOP=$PWD
+
+alias top='cd $TOP'
+alias b='powershell buildFBS.ps1'
+alias src='cd $TOP/src'
+alias apps='cd $TOP/apps'
+alias trip='cd $TOP/src/tripgen'
+alias search='cd $TOP/src/search'
+alias post='cd $TOP/src/post'
