@@ -8,7 +8,7 @@
 #define __FBS_OBJ__
 
 // System hookups
-#include "tripgen_obj.h"
+#include "tripgen/tripgen_obj.h"
 
 static class tripgen_obj_t * tripgen;
 

@@ -16,6 +16,7 @@
 
 /*  GLOBAL DECLARATIONS */
 using namespace std;
+const char projpath[128] = "C:\\Users\\sluec\\OneDrive\\Documents\\Code\\Projects\\FlightBookingSuggestor_v1";
 
 /*  PROGRAM FUNCTIONS   */
 
@@ -37,7 +38,9 @@ void    runtime_check()
 }
 void    user_tripgen_inputs( tripgen_inputs_t &inp)
 {
-    ifstream file("data.csv"); // Open the file named "data.csv"
+    char    datapath[140];
+    snprintf( datapath, sizeof(datapath), "%s\\data.csv", projpath );
+    ifstream file(datapath); // Open the file named "data.csv"
     string line;
 
     if (!file.is_open()) {
@@ -62,6 +65,13 @@ void    init()
 {
 // Program initialization function
 
+    // Print confirmation that program is running
+    cout    << "************************************" << endl
+            << "*                                  *" << endl
+            << "*         PROGRAM STARTED          *" << endl
+            << "*                                  *" << endl
+            << "************************************" << endl;
+
     // Allocate memory for FBS class objects
     tripgen = new tripgen_obj_t;
 
@@ -83,11 +93,11 @@ void    close()
     delete tripgen;
 
     // Print confirmation that program exited nicely
-    cout    << "************************************"
-            << "*                                  *"
-            << "* PROGRAM EXITED, CELANUP FINISHED *"
-            << "*                                  *"
-            << "************************************";
+    cout    << "************************************" << endl
+            << "*                                  *" << endl
+            << "* PROGRAM EXITED, CELANUP FINISHED *" << endl
+            << "*                                  *" << endl
+            << "************************************" << endl;
 
     return;
 }
@@ -102,9 +112,10 @@ int     main()
 
     // Begin executing FBS main update code
     // Populate empty input structure with required data from user
-    
+    user_tripgen_inputs(inp);
 
-
+    // Close program nicely
+    close();
 
     return 0;
 }
