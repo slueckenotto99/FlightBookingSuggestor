@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.1...3.28)
+cmake_minimum_required(VERSION 3.12...3.28)
 
 # This is your project statement. You should always list languages;
 # Listing the version is nice here since it sets lots of useful variables
@@ -49,6 +49,9 @@ FetchContent_Declare(
   GIT_TAG 5.3.0)
 FetchContent_MakeAvailable(fmtlib)
 # Adds fmt::fmt
+
+# Set global output directory for executables
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 
 # The compiled library code is here
 add_subdirectory(src)

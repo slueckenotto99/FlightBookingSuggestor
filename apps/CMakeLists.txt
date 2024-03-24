@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.1...3.28)
+cmake_minimum_required(VERSION 3.12...3.28)
 
 # This is your project statement. You should always list languages;
 # Listing the version is nice here since it sets lots of useful variables
@@ -26,8 +26,21 @@ project(
 add_executable( FBS 
                 FBS_exec.cpp)
 
+# Ensure libraries are built and installed before building executable
+add_dependencies( FBS tripgen_library )
+
+# target_include_directories(FBS PUBLIC ${PROJECT_SOURCE_DIR}/include)
+
 # Make sure you link your targets with this command. It can also link libraries and
 # even flags, so linking a target that does not exist will not give a configure-time error.
-#target_link_libraries(MyExample PRIVATE MyLibExample)
+target_link_libraries(FBS PRIVATE tripgen_library)
 
-#add_subdirectory( src )
+# Install the library
+install(TARGETS FBS
+        EXPORT FBS_targets
+        RUNTIME DESTINATION ${PROJECT_SOURCE_DIR}/bin)
+
+# Install header files to include directory
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/apps/
+        DESTINATION ${PROJECT_SOURCE_DIR}/include/
+        FILES_MATCHING PATTERN "*.h")

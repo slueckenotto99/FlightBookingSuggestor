@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\sluec\OneDrive\Documents\Code\Projects\FlightBookingSuggestor_v1\tests\test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\sluec\OneDrive\Documents\Code\Projects\FlightBookingSuggestor_v1\tests\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{F6BE89FF-8818-300F-BF3F-DE0EB2896A7E}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
