@@ -1,0 +1,10 @@
+^C:\USERS\SLUEC\ONEDRIVE\DOCUMENTS\CODE\PROJECTS\FLIGHTBOOKINGSUGGESTOR_V1\BUILD\CMAKEFILES\B359D70F05B63CF18823AC35BF2C109D\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/sluec/OneDrive/Documents/Code/Projects/FlightBookingSuggestor_v1 -BC:/Users/sluec/OneDrive/Documents/Code/Projects/FlightBookingSuggestor_v1/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/sluec/OneDrive/Documents/Code/Projects/FlightBookingSuggestor_v1/build/FlightBookingSuggestor.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

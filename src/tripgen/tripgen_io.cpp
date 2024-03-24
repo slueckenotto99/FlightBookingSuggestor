@@ -11,9 +11,10 @@ void    tripgen_obj_t::inputs( tripgen_inputs_t &inp )
 {
     // Pass input structure to class members
     this->in = inp;
+    return;
 }
 
 void    tripgen_obj_t::outputs()
 {
-    
+    return;
 }

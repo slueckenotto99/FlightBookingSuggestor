@@ -4,10 +4,14 @@
 
 */
 
+// Library hookups
 #include <conio.h>
+#include <fstream>
+#include <sstream>
 #include <iostream>
 #include <new>
 
+// System hookups
 #include "FBS_obj.h"
 
 /*  GLOBAL DECLARATIONS */
@@ -31,6 +35,28 @@ void    runtime_check()
     runtime_check(0);
     return;
 }
+void    user_tripgen_inputs( tripgen_inputs_t &inp)
+{
+    ifstream file("data.csv"); // Open the file named "data.csv"
+    string line;
+
+    if (!file.is_open()) {
+        cerr << "Error opening file!" << endl;
+        return;
+    }
+
+    while (getline(file, line)) { // Read lines from the file
+        istringstream iss(line);
+        string token;
+
+        while (getline(iss, token, ',')) { // Parse line into tokens separated by commas
+            cout << token << endl; // Print each token
+        }
+    }
+
+    file.close(); // Close the file
+    return;
+}
 
 void    init()
 {
@@ -42,6 +68,7 @@ void    init()
     // Perform class-specific inits
     tripgen->init();
 
+    runtime_check();
     return;
 }
 
@@ -56,11 +83,11 @@ void    close()
     delete tripgen;
 
     // Print confirmation that program exited nicely
-    cout    << "***********************************"
-            << "*                                 *"
-            << "* PROGRAM EXITED CELANUP FINISHED *"
-            << "*                                 *"
-            << "***********************************";
+    cout    << "************************************"
+            << "*                                  *"
+            << "* PROGRAM EXITED, CELANUP FINISHED *"
+            << "*                                  *"
+            << "************************************";
 
     return;
 }
@@ -76,6 +103,8 @@ int     main()
     // Begin executing FBS main update code
     // Populate empty input structure with required data from user
     
+
+
 
     return 0;
 }

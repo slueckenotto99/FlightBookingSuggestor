@@ -1,33 +1,39 @@
-cmake_minimum_required(VERSION 3.1...3.28)
+cmake_minimum_required(VERSION 3.10...3.28)
 
-# This is your project statement. You should always list languages;
-# Listing the version is nice here since it sets lots of useful variables
-project(
-  FlightBookingSuggestor
-  VERSION 0.0.1
-  LANGUAGES CXX)
+# Optionally glob, but only for CMake 3.12 or later:
+# file(GLOB HEADER_LIST CONFIGURE_DEPENDS "${FlightBookingSuggestor_SOURCE_DIR}/include/*.hpp")
+# set(    HEADER_LIST 
+#         "${FlightBookingSuggestor_SOURCE_DIR}/include/lib.hpp")
 
-# If you set any CMAKE_ variables, that can go here.
-# (But usually don't do this, except maybe for C++ standard)
+set(    HEADER_LIST 
+                            tripgen_obj.h
+                            )
 
-# Find packages go here.
+# Make an automatic library - will be static or dynamic based on user setting
+add_library(tripgen_library
+                            tripgen_obj.cpp 
+                            tripgen_io.cpp
+                            ${HEADER_LIST}
+                            )
 
-# You should usually split this into folders, but this is a simple example
+# All users of this library will need at least C++17
+target_compile_features(tripgen_library PUBLIC cxx_std_17)
 
-# This is a "default" library, and will match the *** variable setting.
-# Other common choices are STATIC, SHARED, and MODULE
-# Including header files here helps IDEs but is not required.
-# Output libname matches target name, with the usual extensions on your system
-#add_library(MyLibExample simple_lib.cpp simple_lib.hpp)
+# We need this directory, and users of our library will need it too
+target_include_directories(tripgen_library PUBLIC
+                            ${CMAKE_CURRENT_SOURCE_DIR}
+                            )
 
-# Link each target with other targets or add options, etc.
+# Install the library's executable
+install(TARGETS tripgen_library
+                            EXPORT tripgen_library_targets
+                            LIBRARY DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/../../lib
+                            ARCHIVE DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/../../lib
+                            RUNTIME DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/../../bin
+                            INCLUDES DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/../../include
+                            )
 
-# Adding something we can run - Output name matches target name
-#add_executable( FBS 
-#                FBS_exec.cpp)
-
-# Make sure you link your targets with this command. It can also link libraries and
-# even flags, so linking a target that does not exist will not give a configure-time error.
-#target_link_libraries(MyExample PRIVATE MyLibExample)
-
-add_subdirectory( src )
+# Install the header files
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../../include/tripgen
+                            DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/../../include
+                            )
