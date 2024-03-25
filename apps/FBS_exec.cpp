@@ -111,8 +111,11 @@ int     main()
     init();
 
     // Begin executing FBS main update code
-    // Populate empty input structure with required data from user
+    // Populate empty tripgen input structure with required data from user
     user_tripgen_inputs(inp);
+
+    // Pass inputs to tripgen class
+    tripgen->inputs(inp);
 
     // Close program nicely
     close();
