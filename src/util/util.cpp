@@ -26,3 +26,25 @@ int factorial( int n )
         return f;
     }
 }
+
+/*!
+ * @brief Swaps one character in a string for another in the same string
+ *
+ * @param to    Index in string to swap TO
+ * @param from  Index in string to swap FROM
+ * @param op_string Address of string to be modified
+ * 
+ * @return Returns void. op_string is modified at return of this function
+ *
+ */
+void swap_str_char( unsigned int to, unsigned int from, string &op_string )
+{
+
+    char xfr[2];
+    xfr[0] = op_string.at(to);
+    xfr[1] = op_string.at(from);
+    op_string[to] = xfr[1];
+    op_string[from] = xfr[0];
+
+    return;
+}

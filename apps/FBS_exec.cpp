@@ -27,6 +27,7 @@ void    runtime_check( char override )
     if (_kbhit() || override)
     {
         // User input or override specified, exit program nicely
+        cout << "User interrupt..." << endl;
         close();
     }
     return;
