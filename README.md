@@ -1,4 +1,4 @@
-![CMake Test Status](https://github.com/slueckenotto99/FlightBookingSuggestor/actions/workflows/main.yml/badge.svg?event=push)
+![CMake Test Status](https://github.com/slueckenotto99/FlightBookingSuggestor/actions/workflows/cmake-single-platform.yml/badge.svg?event=push)
 
 # FlightBookingSuggestor
 
