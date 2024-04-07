@@ -137,6 +137,9 @@ int     main()
     // Begin tripgen update calls
     tripgen->oneway_gen();
 
+    // Output the generated itineraries to terminal
+    tripgen->outputs();
+
     // Close program nicely
     close();
 

@@ -4,6 +4,8 @@
 
 */
 
+#include <iostream>
+
 // System hookups
 #include "tripgen_obj.h"
 
@@ -18,5 +20,12 @@ void    tripgen_obj_t::inputs( tripgen_inputs_t &inp )
 
 void    tripgen_obj_t::outputs()
 {
+    // Print itineraries to terminal
+    for ( auto it : this->itineraries )
+    {
+        static int count = 1;
+        cout << count << ":\t" << it << endl;
+        count++;
+    }
     return;
 }
