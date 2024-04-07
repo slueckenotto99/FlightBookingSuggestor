@@ -123,6 +123,7 @@ void    tripgen_obj_t::oneway_gen( void )
     vector<string> icao_combos;             ///< Temp vector to store trip combinations
     string icao_str = "";                   ///< Temp string to store icao values
     string icao_mid = "";                   ///< Temp string to store a trip with start/end locations removed
+    string packet_str = "";                 ///< Temp string to store single oneway packet
     int oneway_loop = trip_count - 1;       ///< Oneway generator loop logic tracker
 
     for ( unsigned int i = 0; i < num_dest; i++ )
@@ -167,9 +168,18 @@ void    tripgen_obj_t::oneway_gen( void )
     }
 
 
-    for ( int i = 0; i < icao_combos.size(); i++ )
+    for ( auto it : icao_combos )
     {
-        cout << i+1 << ":\t" << icao_combos[i] << endl;     // Print generated trip combinations
+        for ( int i = 0; i < num_dest - 1; i++ )
+        {
+            if ( !packet_str.empty() ) packet_str += "-";           // Add hyphen separator
+            packet_str += type_id;                                  // Add 'OW' packet identifier
+            packet_str += it.substr(i*ICAO_LEN, ICAO_LEN);          // Add departure ICAO
+            packet_str += "YDDD";                                   // Add date identifier
+            packet_str += it.substr((i+1)*ICAO_LEN, ICAO_LEN);      // Add arrival ICAO
+        }
+        this->itineraries.push_back(packet_str);                    // Add fully formed trip to list of itineraries
+        packet_str = "";                                            // Clear packet string
     }
 
     return;
