@@ -3,13 +3,14 @@
     Utility cpp file for various common functions
 
 */
+#include "util.h"
 
 #include <iostream>
 
 using namespace std;
 
 // Calculates the factorial of an integer
-int factorial( int n )
+unsigned int factorial( int n )
 {
     if ( n < 0 )
     {
@@ -18,8 +19,8 @@ int factorial( int n )
     }
     else
     {
-        int f = 0;
-        for ( int i = 0; i < n; i++ )
+        int f = n;
+        for ( int i = 1; i < n; i++ )
         {
             f *= i;
         }

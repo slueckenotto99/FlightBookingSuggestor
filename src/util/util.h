@@ -9,7 +9,7 @@
 
 #include <string>
 
-int factorial( int i );
+unsigned int factorial( int i );
 void swap_str_char( unsigned int to, unsigned int from, std::string &op_string );
 
 #endif

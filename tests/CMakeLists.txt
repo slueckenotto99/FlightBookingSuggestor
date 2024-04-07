@@ -20,7 +20,7 @@ target_include_directories(testing PUBLIC ${PROJECT_SOURCE_DIR}/src)
 # All users of this library will need at least C++17
 target_compile_features(testing PUBLIC cxx_std_17)
 
-target_link_libraries( testing PRIVATE util_library )
+target_link_libraries( testing PRIVATE util_library tripgen_library )
 
 # IDEs should put the headers in a nice place
 source_group(

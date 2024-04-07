@@ -37,6 +37,7 @@ void    runtime_check()
     runtime_check(0);
     return;
 }
+
 void    user_tripgen_inputs( tripgen_inputs_t &inp)
 {
     char    datapath[140];
@@ -59,6 +60,20 @@ void    user_tripgen_inputs( tripgen_inputs_t &inp)
     }
 
     file.close(); // Close the file
+
+    // Test inputs processing
+    destination_config_t loc[6];
+    loc[0].airport_icao = "KTPA";
+    loc[1].airport_icao = "KICT";
+    loc[2].airport_icao = "KMCI";
+    loc[3].airport_icao = "KORD";
+    loc[4].airport_icao = "KMCO";
+    loc[5].airport_icao = "KTPA";
+
+    for ( int i = 0; i < 6; i++ )
+    {
+        inp.locations.push_back(loc[i]);
+    }
     return;
 }
 
@@ -117,6 +132,10 @@ int     main()
 
     // Pass inputs to tripgen class
     tripgen->inputs(inp);
+    cout << "Done with tripgen inputs..." << endl;
+
+    // Begin tripgen update calls
+    tripgen->oneway_gen();
 
     // Close program nicely
     close();

@@ -33,7 +33,7 @@ add_dependencies( FBS tripgen_library )
 
 # Make sure you link your targets with this command. It can also link libraries and
 # even flags, so linking a target that does not exist will not give a configure-time error.
-target_link_libraries(FBS PRIVATE tripgen_library)
+target_link_libraries(FBS PRIVATE tripgen_library util_library)
 
 # Install the library
 install(TARGETS FBS

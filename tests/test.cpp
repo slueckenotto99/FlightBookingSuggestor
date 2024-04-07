@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-
+#include "tripgen/tripgen_obj.h"
 #include "util/util.h"
 
 using namespace std;
@@ -15,11 +15,10 @@ int main()
 
     string test;
 
-    test = "123456789";
+    test = "KTPAKICTKSFOKJFK";
 
-    swap_str_char(0,3, test);
-
-    cout << test << endl;
+    cout << factorial( 6 - 2 ) << endl;
+    cout << factorial(4) << endl;
 
     return 0;
 }

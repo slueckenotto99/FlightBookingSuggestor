@@ -13,6 +13,7 @@ set( HEADER_LIST
 add_library( tripgen_library
                             tripgen_obj.cpp 
                             tripgen_io.cpp
+                            oneway_gen.cpp
                             ${HEADER_LIST}
                             )
 
