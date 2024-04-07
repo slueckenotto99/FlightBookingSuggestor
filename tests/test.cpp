@@ -1,5 +1,6 @@
 #include <conio.h>
 #include <iostream>
+#include <algorithm>
 #include <string>
 #include <vector>
 #include "tripgen/tripgen_obj.h"
@@ -16,6 +17,19 @@ int main()
     string test;
 
     test = "KTPAKICTKSFOKJFK";
+
+    vector<string> icao_combos;
+    string icao_str = test;
+
+    
+    icao_combos.push_back("KICT");
+    icao_combos.push_back("KICT");
+    icao_combos.push_back("KICT");
+    icao_combos.push_back("KICT");
+    //icao_combos.push_back(test);
+
+    //cout << find(icao_combos.begin(), icao_combos.end(), icao_str) << endl;
+    cout << (find(icao_combos.begin(), icao_combos.end(), icao_str) != icao_combos.end()) << endl;
 
     cout << factorial( 6 - 2 ) << endl;
     cout << factorial(4) << endl;

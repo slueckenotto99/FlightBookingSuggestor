@@ -131,35 +131,37 @@ void    tripgen_obj_t::oneway_gen( void )
     }
 
     icao_combos.push_back(icao_str);        // Store first trip string
-    icao_str = "";                          // Clear temp icao string
+    //icao_str = "";                          // Clear temp icao string
 
     while ( oneway_loop > 0 )               // When oneway_loop hits zero, we know that all possible trips have been created
     {
-        static int sanity_check = 0;
-        static char shift_check = 0;
-        
-        icao_str = icao_combos[icao_combos.size() - 1];     // Grab recently created trip string
-        icao_mid = icao_str.substr( ICAO_LEN, ICAO_LEN * num_dest - (2 * ICAO_LEN) );     // Strip start/end loations from trip string
-        if ( shift_check ) 
-        {
-            shift_icao(icao_mid);                   // Shift ICAO codes right by 1 ICAO code
-            shift_check = 0;
-        }
-        swap_icao(num_dest-2, num_dest-3, icao_mid);    // Swap last and 2nd to last icao codes
-        icao_str = icao_combos[icao_combos.size() - 1].substr(0, ICAO_LEN) + icao_mid + icao_combos[icao_combos.size() - 1].substr((num_dest-1)*ICAO_LEN, ICAO_LEN);
+        static int sanity_check = 0;        // Sanity check counter to exit while loop if insane amount of loops take place
+        static int swap_check = 3;          // Incrementing ICAO position swap variable
 
-        if ( find(icao_combos.begin(), icao_combos.end(), icao_str) != icao_combos.end() )
+        
+        icao_mid = icao_str.substr( ICAO_LEN, ICAO_LEN * num_dest - (2 * ICAO_LEN) );     // Strip start/end loations from trip string
+        if (swap_check > num_dest - 1 ) 
         {
-            icao_combos.push_back(icao_str);        // Store generated trip string
+            shift_icao(icao_mid);           // Right-shift all ICAO codes by 1 to shuffle positions in string
+            swap_check = 3;                 // Reset position swap variable to begin trying all combinations of swaps again
+        }
+        swap_icao(num_dest - 2, num_dest - swap_check, icao_mid);   // Swap last ICAO with current swap position iteration
+        icao_str = start_icao + icao_mid + end_icao;                // Add start/end ICAO to get full trip string
+        if ( find(icao_combos.begin(), icao_combos.end(), icao_str) == icao_combos.end() )  // Generated string is not yet saved in ICAO combo vector
+        {
+            icao_combos.push_back(icao_str);        // Store unique generated trip string
             oneway_loop--;                          // Decrement oneway loop tracker
+            swap_check = 3;                         // Reset position swap variable to begin trying all combinations of swaps again
         }
-        else
+        else                                                                                // Generated string already exists
         {
-            shift_check = 1;
+            swap_icao(num_dest - 2, num_dest - swap_check, icao_mid);   // Undo swap changes 
+            icao_str = start_icao + icao_mid + end_icao;                // Add start/end ICAO to get full trip string
+            swap_check++;                                               // Increment swap variable to try a new combination next iteration
         }
-        if (sanity_check > 1000) 
+        if (sanity_check > 100000) // Exit while loop in case code is bad
         {
-            oneway_loop = -1;  // Exit while loop in case code is bad
+            oneway_loop = -1;  
             cout << "While Loop code is bad, code is INSANE" << endl;
         }
         sanity_check++;
@@ -168,7 +170,7 @@ void    tripgen_obj_t::oneway_gen( void )
 
     for ( int i = 0; i < icao_combos.size(); i++ )
     {
-        cout << icao_combos[i] << endl;
+        cout << i+1 << ":\t" << icao_combos[i] << endl;     // Print generated trip combinations
     }
 
     return;
