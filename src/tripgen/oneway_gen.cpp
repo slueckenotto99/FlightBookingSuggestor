@@ -131,7 +131,6 @@ void    tripgen_obj_t::oneway_gen( void )
     }
 
     icao_combos.push_back(icao_str);        // Store first trip string
-    //icao_str = "";                          // Clear temp icao string
 
     while ( oneway_loop > 0 )               // When oneway_loop hits zero, we know that all possible trips have been created
     {
